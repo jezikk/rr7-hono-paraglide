@@ -8,6 +8,7 @@ declare module "react-router" {
 
 export default {
   future: {
+    unstable_splitRouteModules: true,
     unstable_middleware: true,
   },
   ssr: true,
