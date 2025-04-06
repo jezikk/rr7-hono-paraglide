@@ -9,7 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import { localeMiddleware } from "./middleware/locale.middleware";
+import { localeMiddleware } from "./middleware/locale-middleware";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

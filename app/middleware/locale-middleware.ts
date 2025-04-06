@@ -1,7 +1,7 @@
 import { unstable_createContext } from "react-router";
 import { paraglideMiddleware } from "~/paraglide/server";
+import { getRequestType } from "~/utils/get-request-type";
 import type { Route } from "../+types/root";
-import { getRequestType } from "../utils/get-request-type";
 
 const localeContext = unstable_createContext<string>();
 
@@ -10,7 +10,7 @@ const localeMiddleware: Route.unstable_MiddlewareFunction = async ({
   context,
 }) => {
   if (getRequestType(request) === "document") {
-    return await paraglideMiddleware(request, async ({ locale }) => {
+    return await paraglideMiddleware(request, ({ locale }) => {
       context.set(localeContext, locale);
     });
   }
