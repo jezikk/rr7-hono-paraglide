@@ -7,12 +7,10 @@ import {
   isRouteErrorResponse,
 } from "react-router";
 import type { Route } from "./+types/root";
-import "./app.css";
-import {
-  localeContext,
-  localeMiddleware,
-} from "./middleware/locale-middleware";
+import { localeMiddleware } from "./middleware/locale-middleware";
 import { getLocale } from "./paraglide/runtime";
+
+import "./app.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -28,12 +26,6 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const unstable_middleware = [localeMiddleware];
-
-export async function loader({ context }: Route.LoaderArgs) {
-  const locale = context.get(localeContext);
-
-  return { locale };
-}
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -53,7 +45,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App({ loaderData }: Route.ComponentProps) {
+export default function App() {
   return <Outlet />;
 }
 
