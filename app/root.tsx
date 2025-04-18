@@ -9,7 +9,6 @@ import {
 } from "react-router";
 import type { Route } from "./+types/root";
 import "./app.css";
-import { createContext } from "react";
 import {
   localeContext,
   localeMiddleware,
@@ -57,14 +56,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-const LocaleContextSSR = createContext(baseLocale);
-
 export default function App({ loaderData }: Route.ComponentProps) {
-  return (
-    <LocaleContextSSR.Provider value={loaderData.locale}>
-      <Outlet />
-    </LocaleContextSSR.Provider>
-  );
+  return <Outlet />;
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
