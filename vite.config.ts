@@ -15,6 +15,7 @@ export default defineConfig({
       project: "./project.inlang",
       outdir: "./app/paraglide",
       strategy: ["cookie", "preferredLanguage", "baseLocale"],
+      cookieName: "app_locale",
     }),
   ],
 });
