@@ -7,20 +7,14 @@ import {
   isRouteErrorResponse,
   useRouteLoaderData,
 } from "react-router";
-
 import type { Route } from "./+types/root";
 import "./app.css";
-import { createContext, useContext } from "react";
+import { createContext } from "react";
 import {
   localeContext,
   localeMiddleware,
 } from "./middleware/locale-middleware";
-import {
-  assertIsLocale,
-  baseLocale,
-  getLocale,
-  overwriteGetLocale,
-} from "./paraglide/runtime";
+import { baseLocale } from "./paraglide/runtime";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -47,7 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const loaderData = useRouteLoaderData<typeof loader>("root");
 
   return (
-    <html lang={loaderData?.locale ?? getLocale()}>
+    <html lang={loaderData?.locale ?? baseLocale}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -64,10 +58,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 const LocaleContextSSR = createContext(baseLocale);
-
-if (import.meta.env.SSR) {
-  overwriteGetLocale(() => assertIsLocale(useContext(LocaleContextSSR)));
-}
 
 export default function App({ loaderData }: Route.ComponentProps) {
   return (
