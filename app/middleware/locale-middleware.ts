@@ -4,12 +4,13 @@ import type { Route } from "../+types/root";
 
 const localeContext = unstable_createContext<string>();
 
-const localeMiddleware: Route.unstable_MiddlewareFunction = async ({
-  request,
-  context,
-}) => {
+const localeMiddleware: Route.unstable_MiddlewareFunction = async (
+  { request, context },
+  next,
+) => {
   return await paraglideMiddleware(request.clone(), ({ locale }) => {
     context.set(localeContext, locale);
+    return next();
   });
 };
 
