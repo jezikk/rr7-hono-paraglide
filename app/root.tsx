@@ -10,6 +10,7 @@ import type { Route } from "./+types/root";
 import { getLocale } from "./paraglide/runtime";
 
 import "./app.css";
+import { localeMiddleware } from "./middleware/locale-middleware";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -24,7 +25,7 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
-//export const unstable_middleware = [localeMiddleware];
+export const unstable_middleware = [localeMiddleware];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
