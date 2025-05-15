@@ -11,6 +11,7 @@ import { getLocale } from "./paraglide/runtime";
 
 import "./app.css";
 import { localeMiddleware } from "./middleware/locale-middleware";
+import { useRouteLoaderData } from "react-router";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -27,9 +28,15 @@ export const links: Route.LinksFunction = () => [
 
 export const unstable_middleware = [localeMiddleware];
 
+export const loader = () => {
+  return { locale: getLocale() };
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
+  const data = useRouteLoaderData<typeof loader>("root");
+
   return (
-    <html lang={getLocale()}>
+    <html lang={data?.locale ?? getLocale()}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
