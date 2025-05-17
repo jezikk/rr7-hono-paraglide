@@ -1,5 +1,6 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
   "language": "Jazyk",
+  "localizedLink": "Lokalizovaný odkaz",
   "test": "Čeština"
 }

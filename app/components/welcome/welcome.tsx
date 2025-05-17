@@ -1,6 +1,14 @@
 import { Select } from "~/components/ui/select";
 import { m } from "~/paraglide/messages";
-import { getLocale, isLocale, locales, setLocale } from "~/paraglide/runtime";
+import {
+  getLocale,
+  isLocale,
+  locales,
+  localizeHref,
+  setLocale,
+} from "~/paraglide/runtime";
+import { fieldStyles } from "../ui/field";
+import { Link } from "../ui/link";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
@@ -48,6 +56,13 @@ export function Welcome() {
               )}
             </Select.List>
           </Select>
+
+          <div>
+            <div className={fieldStyles().label()}>{m.localizedLink()}</div>
+            <Link intent="primary" href={localizeHref("/")}>
+              {localizeHref("/")}
+            </Link>
+          </div>
         </div>
       </div>
     </main>
